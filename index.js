@@ -3,6 +3,7 @@ const cors = require('cors')
 const app = express()
 
 app.use(express.json())
+app.use(express.static('build'))
 app.use(cors())
 
 let notes = [
@@ -27,7 +28,7 @@ let notes = [
 ]
 
 app.get('/', (req, res) => {
-  res.send('<h1>Hellow World!</h1>')
+  res.send('<img src="https://cataas.com/cat" alt="cat">')
 })
 
 app.get('/api/notes', (req, res) => {
