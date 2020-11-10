@@ -5,7 +5,6 @@ const omdbRouter = require('express').Router()
 omdbRouter.get('/search/:query', async (req, res) => {
   const url = `http://www.omdbapi.com/?s=${req.params.query}&apikey=${config.OMDB_API_KEY}`
   const result = await axios.get(url)
-  console.log(result.data)
   res.json(result.data)
 })
 
