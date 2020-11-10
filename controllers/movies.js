@@ -12,13 +12,18 @@ moviesRouter.get('/:id', async (req, res) => {
       path: 'ratings',
       populate: {
         path: 'user',
-        select: { username: 1 }
+        select: {
+          username: 1,
+          _id: 0
+        }
       },
       select: {
         user: 1,
         rating: 1,
+        _id: 0
       }
     })
+    .lean()
     .exec()
   if (movie) {
     res.json(movie)
