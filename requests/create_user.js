@@ -5,7 +5,7 @@ const create_user = async () => {
     username: 'root1',
     password: 'abc123',
   }
-  try{
+  try {
     const result = await axios.post(
       'http://localhost:3001/api/users',
       bodyParams
