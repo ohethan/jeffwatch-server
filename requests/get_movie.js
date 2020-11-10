@@ -8,7 +8,7 @@ const get_movie = async () => {
     const result = await axios.get(
       `http://localhost:3001/api/movies/${movie}`
     )
-    console.log(result.status, result.data)
+    console.log(result.status, result.data.ratings)
   } catch (e) {
     console.log(e.response.status, e.response.data)
   }

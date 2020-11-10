@@ -1,7 +1,7 @@
 const axios = require('axios').default
 
 const create_rating = async () => {
-  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjVmYTlkMGUzNDQ4NTBiMWZhMGM1MjFmOSIsImlhdCI6MTYwNDk2NDU4OX0.b6wx8IgyvOs7G5HT6JieFS1dGD8el0bhQlumhV2iCqc'
+  const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QxIiwiaWQiOiI1ZmE5ZjE1MGJmZDVhODRiMTQzNGI5MzMiLCJpYXQiOjE2MDQ5NzI5MTF9.SPF3hrM7q5-rJ_Q9fwr7782askE7xX8Wt9D_d--9_Qk'
   const config = {
     headers: { Authorization: `Bearer ${token}` }
   }

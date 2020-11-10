@@ -6,7 +6,20 @@ const Movie = require('../models/movie')
   Example: /api/movies/tt0079944
 */
 moviesRouter.get('/:id', async (req, res) => {
-  const movie = await Movie.findOne({ imdbId: req.params.id })
+  const movie = await Movie
+    .findOne({ imdbId: req.params.id })
+    .populate({
+      path: 'ratings',
+      populate: {
+        path: 'user',
+        select: { username: 1 }
+      },
+      select: {
+        user: 1,
+        rating: 1,
+      }
+    })
+    .exec()
   if (movie) {
     res.json(movie)
   } else {

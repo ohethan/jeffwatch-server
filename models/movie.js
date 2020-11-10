@@ -28,10 +28,10 @@ const movieSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  ratedBy: [
+  ratings: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'Rating'
     }
   ]
 })

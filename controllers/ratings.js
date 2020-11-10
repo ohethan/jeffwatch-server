@@ -40,7 +40,7 @@ ratingsRouter.post('/', middleware.protect, async (req, res) => {
   const savedRating = await rating.save()
   user.ratings = user.ratings.concat(savedRating._id)
   await user.save()
-  movie.ratedBy = movie.ratedBy.concat(user._id)
+  movie.ratings = movie.ratings.concat(savedRating._id)
   if (movie.avgRating) {
     movie.avgRating = ((movie.avgRating * movie.numRatings) + body.rating) / (movie.numRatings + 1)
   } else movie.avgRating = body.rating
@@ -108,7 +108,7 @@ ratingsRouter.delete('/', middleware.protect, async (req, res) => {
     return res.status(404).end()
   }
 
-  movie.ratedBy.pull({ _id: user._id })
+  movie.ratings.pull({ _id: rating._id })
   movie.numRatings = movie.numRatings - 1
   if (movie.numRatings <= 0) {
     movie.avgRating = undefined

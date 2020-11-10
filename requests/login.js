@@ -2,7 +2,7 @@ const axios = require('axios').default
 
 const login = async () => {
   const bodyParams = {
-    username: 'root',
+    username: 'root1',
     password: 'abc123',
   }
   try {
