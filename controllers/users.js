@@ -25,6 +25,22 @@ usersRouter.post('/', async (req, res) => {
     return res.status(400).send({ message: 'username must be longer than 2 characters' })
   }
 
+  if (body.username.length > 20) {
+    return res.status(400).send({ message: 'username must be 20 characters or less' })
+  }
+
+  if (!body.username.match('^[A-Za-z0-9]+$')) {
+    return res.status(400).send({ message: 'username can only contain characters and numbers' })
+  }
+
+  if (body.password.length < 6) {
+    return res.status(400).send({ message: 'password must be 6 characters or more' })
+  }
+
+  if (body.password.length > 50) {
+    return res.status(400).send({ message: 'why is your password more than 50 characters...' })
+  }
+
   const saltRounds = 10
   const passwordHash = await bcrypt.hash(body.password, saltRounds)
 
