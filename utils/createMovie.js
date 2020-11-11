@@ -14,11 +14,16 @@ const createMovie = async (imdbId) => {
     }
 
     const genre = result.data.Genre.split(', ')
-    let releaseDate = null
-    try {
-      releaseDate = new Date(Date.parse(result.data.Released))
-    } catch {
-      releaseDate = new Date(Date.parse(result.data.Year))
+
+    let dateTimestamp = Date.parse(result.data.Released)
+    let releaseDate = undefined
+    if (!isNaN(dateTimestamp)) {
+      releaseDate = new Date(dateTimestamp)
+    } else {
+      dateTimestamp = Date.parse(result.data.Year)
+      if (!isNaN(dateTimestamp)) {
+        releaseDate = new Date(dateTimestamp)
+      }
     }
 
     const movie = new Movie({
