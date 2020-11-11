@@ -96,7 +96,7 @@ ratingsRouter.delete('/', middleware.protect, async (req, res) => {
   let movie = await Movie.findOne({ imdbId: body.movie }).exec()
 
   if(!movie) {
-    return res.status(404).end()
+    return res.status(204).end()
   }
 
   const rating = await Rating.findOne()
@@ -105,7 +105,7 @@ ratingsRouter.delete('/', middleware.protect, async (req, res) => {
     .exec()
 
   if (!rating) {
-    return res.status(404).end()
+    return res.status(204).end()
   }
 
   movie.ratings.pull({ _id: rating._id })
@@ -124,18 +124,18 @@ ratingsRouter.delete('/', middleware.protect, async (req, res) => {
   res.status(204).end()
 })
 
-ratingsRouter.get('/', middleware.protect, async (req, res) => {
-  const body = req.body
+ratingsRouter.get('/:id', middleware.protect, async (req, res) => {
+  const movieId = req.params.id
   const user = req.user
 
-  if (!body.movie) {
+  if (!movieId) {
     return res.status(400).end()
   }
 
-  let movie = await Movie.findOne({ imdbId: body.movie }).exec()
+  let movie = await Movie.findOne({ imdbId: movieId }).exec()
 
   if(!movie) {
-    return res.status(404).end()
+    return res.status(204).end()
   }
 
   const rating = await Rating.findOne()
@@ -146,7 +146,7 @@ ratingsRouter.get('/', middleware.protect, async (req, res) => {
   if (rating) {
     res.json(rating)
   } else {
-    res.status(404).end()
+    res.status(204).end()
   }
 })
 
