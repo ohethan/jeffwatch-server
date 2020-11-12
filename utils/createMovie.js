@@ -30,7 +30,8 @@ const createMovie = async (imdbId) => {
       imdbId: imdbId,
       title: result.data.Title,
       genre: genre,
-      releaseDate: releaseDate
+      releaseDate: releaseDate,
+      poster: result.data.Poster
     })
 
     await movie.save()

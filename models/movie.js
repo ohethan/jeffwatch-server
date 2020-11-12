@@ -32,7 +32,10 @@ const movieSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Rating'
     }
-  ]
+  ],
+  poster: {
+    type: String
+  }
 })
 
 movieSchema.plugin(uniqueValidator)
