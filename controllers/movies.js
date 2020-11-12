@@ -20,7 +20,8 @@ moviesRouter.get('/:id', async (req, res) => {
       select: {
         user: 1,
         rating: 1,
-        _id: 0
+        date: 1,
+        _id: 0,
       }
     })
     .lean()
