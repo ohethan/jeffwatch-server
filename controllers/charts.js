@@ -15,6 +15,10 @@ chartsRouter.get('/', async (req, res) => {
     .sort('-avgRating')
     .limit(50)
 
+  if (!movies) {
+    res.status(404).send({ message: 'no movies found' })
+  }
+
   res.json(movies)
 })
 
