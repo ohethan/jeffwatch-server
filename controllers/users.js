@@ -2,14 +2,6 @@ const bcrypt = require('bcrypt')
 const usersRouter = require('express').Router()
 const User = require('../models/user')
 
-// Get all users
-usersRouter.get('/', async (req, res) => {
-  const users = await User
-    .find({}).populate('notes', { content: 1, date: 1 })
-
-  res.json(users)
-})
-
 /*
   Sign Up : Add new user
   returns 400 if username already exists or if email/password is invalid
