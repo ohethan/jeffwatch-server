@@ -1,6 +1,7 @@
 const config = require('./utils/config')
 const express = require('express')
 require('express-async-errors')
+const path = require('path')
 const app = express()
 const cors = require('cors')
 const usersRouter = require('./controllers/users')
@@ -24,7 +25,7 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
   })
 
 app.use(cors())
-app.use(express.static('build'))
+app.use(express.static(path.join(__dirname, 'build')))
 app.use(express.json())
 app.use(middleware.requestLogger)
 
@@ -35,7 +36,7 @@ app.use('/api/omdb', omdbRouter)
 app.use('/api/movies', moviesRouter)
 app.use('/api/charts', chartsRouter)
 
-app.use(middleware.unknownEndpoint)
+app.get('*', (req, res) => res.sendFile(path.join(__dirname, 'build/index.html')))
 app.use(middleware.errorHandler)
 
 module.exports = app
